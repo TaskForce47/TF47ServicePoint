@@ -30,14 +30,10 @@ _wheelDamage = 0;
     };
 } forEach _allHitpoints;
 
-
-
 if(_wheelCount > 0) then {
     _hitPointDamage = _hitPointDamage + (_wheelDamage / _wheelCount);
     _hitPointCount = _hitPointCount + 1;
 };
-hint str _hitPointDamage;
 _hitPointDamage = _hitPointDamage  / _hitPointCount;
 
-hint str _hitPointDamage;
 _hitPointDamage

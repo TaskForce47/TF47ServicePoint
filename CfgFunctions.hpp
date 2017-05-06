@@ -7,5 +7,8 @@ class tf47_modules_servicepoint
         class getFreeVanillaInventory {};
         class getDamage {};
         class getAmmo {};
+        class getAceCargo {};
+        class applyService {};
+        class rearmVehicle {};
     };
 };

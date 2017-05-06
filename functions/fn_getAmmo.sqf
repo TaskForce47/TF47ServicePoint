@@ -8,14 +8,14 @@ if(isNull _vehicle) exitWith {
 };
 
 
-_allMagazines = magazinesAmmoFull _vehicle;
+_allMagazines = magazinesAllTurrets _vehicle;
 
-_magazineCount = count magazinesAllTurrets _vehicle;
+_magazineCount = count _allMagazines;
 
 _ammoPercentSum = 0;
 
 {
-    _ammoPercentSum = _ammoPercentSum + ((_x select 1) / getNumber
+    _ammoPercentSum = _ammoPercentSum + ((_x select 2) / getNumber
         (configFile >> "CfgMagazines" >> (_x select 0) >> "count"));
 } forEach _allMagazines;
 

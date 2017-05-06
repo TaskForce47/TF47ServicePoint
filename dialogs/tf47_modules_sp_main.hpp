@@ -219,10 +219,10 @@ class tf47_modules_sp_main_dialog
         class tf47_modules_sp_main_status_ready_text: tf47_modules_sp_base_rsctext
         {
         	idc = 1024;
-        	text = "Bereit"; //--- ToDo: Localize;
-        	x = 0.484531 * safezoneW + safezoneX;
+        	text = "       Bereit"; //--- ToDo: Localize;
+        	x = 0.46 * safezoneW + safezoneX;
         	y = 0.423 * safezoneH + safezoneY;
-        	w = 0.0309375 * safezoneW;
+        	w = 0.045 * safezoneW;
         	h = 0.033 * safezoneH;
         };
         class tf47_modules_sp_main_respawn_text: tf47_modules_sp_base_rsctext
@@ -277,7 +277,7 @@ class tf47_modules_sp_main_dialog
         class tf47_modules_sp_main_apply_button: tf47_modules_sp_base_rscbutton_main
         {
         	idc = 1603;
-        	action = "";
+        	action = "[vehicle player] spawn tf47_modules_servicepoint_fnc_applyService;";
 
         	text = "Anwenden"; //--- ToDo: Localize;
         	x = 0.5785 * safezoneW + safezoneX;
