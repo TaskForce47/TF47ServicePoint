@@ -3,8 +3,8 @@ _result = _this params [
 ];
 
 if(isNull _vehicle) exitWith {
-    // TODO
-    hint "no vehicle";
+    ["applyService called without a valid vehicle", "Error", true] spawn
+        BIS_fnc_guiMessage;
 };
 
 disableSerialization;
@@ -12,7 +12,6 @@ disableSerialization;
 _dialog = uiNamespace getVariable ["tf47_modules_sp_main_dialog_var", objNull];
 
 if(isNull _dialog) exitWith {
-    hint "no dialog";
     ["Dialog not found in applyService.sqf", "Error", true] spawn
         BIS_fnc_guiMessage;
 };
