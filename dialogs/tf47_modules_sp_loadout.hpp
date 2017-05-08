@@ -2,7 +2,7 @@ class tf47_modules_sp_loadout_dialog
 {
 	idd = -1;
 	movingEnable = 0;
-	onLoad = "uiNamespace setVariable ['tf47_modules_sp_loadout_dialog_var',_this select 0]; [] spawn tf47_modules_servicepoint_fnc_initLoadout;";
+	onLoad = "uiNamespace setVariable ['tf47_modules_sp_loadout_dialog_var',_this select 0]; [vehicle player] spawn tf47_modules_servicepoint_fnc_initLoadout;";
 	onUnLoad = "uiNamespace setVariable ['tf47_modules_sp_loadout_dialog_var',nil]";
     class ControlsBackground
     {
@@ -139,7 +139,7 @@ class tf47_modules_sp_loadout_dialog
 
 		class tf47_modules_sp_loadout_vanilla_button: tf47_modules_sp_base_rscbutton_main
 		{
-			idc = 1600;
+			idc = 1604;
 			text = "Vanilla Inventory"; //--- ToDo: Localize;
 			x = 0.419688 * safezoneW + safezoneX;
 			y = 0.368 * safezoneH + safezoneY;
@@ -148,7 +148,7 @@ class tf47_modules_sp_loadout_dialog
 		};
 		class tf47_modules_sp_loadout_ace_button: tf47_modules_sp_base_rscbutton_main
 		{
-			idc = 1601;
+			idc = 1605;
 			text = "ACE Inventory"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.368 * safezoneH + safezoneY;
