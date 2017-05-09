@@ -8,3 +8,4 @@ if(isNull _vehicle) exitWith {
 };
 
 ctrlEnable [1604, false];
+[] call tf47_modules_servicepoint_fnc_initVanillaLoadouts;

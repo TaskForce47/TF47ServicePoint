@@ -11,5 +11,8 @@ class tf47_modules_servicepoint
         class getAceCargo {};
         class applyService {};
         class rearmVehicle {};
+        class getMass {};
+        class initConfig {};
+        class initVanillaLoadouts {};
     };
 };

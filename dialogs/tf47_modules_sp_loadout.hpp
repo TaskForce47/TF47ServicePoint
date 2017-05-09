@@ -122,6 +122,7 @@ class tf47_modules_sp_loadout_dialog
 		};
 		class tf47_modules_sp_loadout_loadouts_listbox: tf47_modules_sp_base_listbox
 		{
+			onLBSelChanged = "hint str _this;";
 			idc = 1500;
 			x = 0.386562 * safezoneW + safezoneX;
 			y = 0.412 * safezoneH + safezoneY;
@@ -140,6 +141,7 @@ class tf47_modules_sp_loadout_dialog
 		class tf47_modules_sp_loadout_vanilla_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1604;
+			action = "ctrlEnable [1604, false]; ctrlEnable [1605, true];";
 			text = "Vanilla Inventory"; //--- ToDo: Localize;
 			x = 0.419688 * safezoneW + safezoneX;
 			y = 0.368 * safezoneH + safezoneY;
@@ -149,6 +151,7 @@ class tf47_modules_sp_loadout_dialog
 		class tf47_modules_sp_loadout_ace_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1605;
+			action = "ctrlEnable [1604, true]; ctrlEnable [1605, false];";
 			text = "ACE Inventory"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.368 * safezoneH + safezoneY;
