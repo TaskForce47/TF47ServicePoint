@@ -136,6 +136,7 @@ class tf47_modules_sp_loadout_dialog
 			y = 0.412 * safezoneH + safezoneY;
 			w = 0.0928125 * safezoneW;
 			h = 0.209 * safezoneH;
+			sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 40) * 1)";
 		};
 
 		class tf47_modules_sp_loadout_vanilla_button: tf47_modules_sp_base_rscbutton_main

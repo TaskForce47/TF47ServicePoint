@@ -328,7 +328,7 @@ class tf47_modules_sp_main_dialog
         };
         class tf47_modules_sp_main_respawn_checkbox: tf47_modules_sp_base_checkbox
         {
-			onCheckedChanged = "hint str _this;";
+			onCheckedChanged = "[_this select 1] call tf47_modules_servicepoint_fnc_onRespawnCheckedChanged";
             idc = 2805;
             x = 0.525781 * safezoneW + safezoneX;
             y = 0.423 * safezoneH + safezoneY;

@@ -16,5 +16,7 @@ class tf47_modules_servicepoint
         class initVanillaLoadouts {};
         class getDisplayName {};
         class updateLoadoutContent {};
+        class onRespawnCheckedChanged {}
+        class applyVanillaLoadout {};
     };
 };

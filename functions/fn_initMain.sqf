@@ -6,6 +6,9 @@ if(_vehicle == player) exitWith {
 
 waitUntil {(ctrlText 1001) != ""},
 
+disableSerialization;
+_control = uiNamespace getVariable ['tf47_modules_sp_main_dialog_var',nil];
+
 if(_vehicle getVariable ["tf47_modules_sp_inService", false]) then {
     ctrlSetText [1024, "In Service"];
 } else {
@@ -34,6 +37,8 @@ _aceCargo = [_vehicle] call tf47_modules_servicepoint_fnc_getAceCargo;
 
 if(_aceCargo == -1) then {
     _aceCargo = "n/a";
+    ctrlEnable [2804, false];
+    (_control displayCtrl 1021) ctrlSetTextColor [0.3,0.3,0.3,1];
 } else {
     _aceCargo = format["%1%2", floor (_aceCargo * 100), "%"];
 };
