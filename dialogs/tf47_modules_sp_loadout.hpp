@@ -122,7 +122,7 @@ class tf47_modules_sp_loadout_dialog
 		};
 		class tf47_modules_sp_loadout_loadouts_listbox: tf47_modules_sp_base_listbox
 		{
-			onLBSelChanged = "hint str _this;";
+			onLBSelChanged = "[_this select 1] call tf47_modules_servicepoint_fnc_updateLoadoutContent";
 			idc = 1500;
 			x = 0.386562 * safezoneW + safezoneX;
 			y = 0.412 * safezoneH + safezoneY;

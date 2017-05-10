@@ -328,6 +328,7 @@ class tf47_modules_sp_main_dialog
         };
         class tf47_modules_sp_main_respawn_checkbox: tf47_modules_sp_base_checkbox
         {
+			onCheckedChanged = "hint str _this;";
             idc = 2805;
             x = 0.525781 * safezoneW + safezoneX;
             y = 0.423 * safezoneH + safezoneY;

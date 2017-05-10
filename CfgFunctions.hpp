@@ -14,5 +14,7 @@ class tf47_modules_servicepoint
         class getMass {};
         class initConfig {};
         class initVanillaLoadouts {};
+        class getDisplayName {};
+        class updateLoadoutContent {};
     };
 };

@@ -11,6 +11,8 @@ call compileFinal preprocessFileLineNumbers "TF47ServicePointConfig.sqf";
             select 0;
         (_x select _i) pushBack ([_className] call
             tf47_modules_servicepoint_fnc_getMass);
+        (_x select _i) pushBack ([_className] call
+            tf47_modules_servicepoint_fnc_getDisplayName);
     };
     _x deleteAt (count _x - 1);
 } forEach tf47_modules_sp_loadouts_config;
