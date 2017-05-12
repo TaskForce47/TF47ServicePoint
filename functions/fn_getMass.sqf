@@ -1,19 +1,20 @@
 _result = _this params [
-    ["_item", "", [""]]
+    ["_item", "", [""]],
+    ["_class", "", [""]]
 ];
 
-if(_item == "") exitWith {
+if(_item == "" || _class == "") exitWith {
     ["getMass called with empty string", "Error", true] spawn
         BIS_fnc_guiMessage;
 };
 
 _mass = -1;
 
-switch (true) do {
-    case (isClass (configFile >> "CfgMagazines" >> _item)) : {
+switch (_class) do {
+    case ("CfgMagazines") : {
         _mass = getNumber (configFile >> "CfgMagazines" >> _item >> "mass");
     };
-    case (isClass (configFile >> "CfgWeapons" >> _item)): {
+    case ("CfgWeapons"): {
         if(isClass (configFile >> "CfgWeapons" >> _item >> "WeaponSlotsInfo"))
             then {
             _mass = getNumber (configFile >> "CfgWeapons" >> _item >>
@@ -23,13 +24,11 @@ switch (true) do {
                 >> "mass");
         };
     };
-    case (isClass (configFile >> "CfgVehicles" >> _item)): {
+    case ("CfgVehicles"): {
         _mass = getNumber (configFile >> "CfgVehicles" >> _item >> "mass");
     };
-    case (isClass (configFile >> "CfgGlasses" >> _item)): {
+    case ("CfgGlasses"): {
         _mass = getNumber (configFile >> "CfgGlasses" >> _item >> "mass");
     };
 };
-
-
 _mass

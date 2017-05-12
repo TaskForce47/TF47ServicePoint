@@ -20,6 +20,34 @@ if(_loadout select 1) then {
     clearBackpackCargoGlobal _vehicle;
 };
 
-for "_i" from 2 to ((count _data) - 1) do {
-    // ToDo:
+_maxLoad = getNumber (configfile >> "CfgVehicles" >> typeOf _vehicle >>
+    "maximumLoad");
+
+_freeLoad = [_vehicle] call
+    tf47_modules_servicepoint_fnc_getFreeVanillaInventory;
+
+_remainingLoad = _maxLoad - _freeLoad;
+
+for "_i" from 2 to ((count _loadout) - 1) do {
+    hint str ((_loadout select _i) select 1);
+    _remainingLoad = _remainingLoad - (((_loadout select _i) select 1) *
+        ([((_loadout select _i) select 0), ((_loadout select _i) select 2)]
+            call tf47_modules_servicepoint_fnc_getMass));
 };
+
+if(_remainingLoad <= 0) exitWith {
+    hint "Nicht genügend freier Platz vorhanden!";
+};
+
+for "_i" from 2 to ((count _loadout) - 1) do {
+    if(((_loadout select _i) select 2) == "CfgVehicles") then {
+        _vehicle addBackpackCargoGlobal [(_loadout select _i) select 0,
+            (_loadout select _i) select 1];
+    } else {
+        _vehicle addItemCargoGlobal [(_loadout select _i) select 0,
+            (_loadout select _i) select 1];
+    };
+};
+
+systemChat format['TF47 Service Point | Loadout "%1" wurde hinzugefügt!',
+    _loadout select 0];

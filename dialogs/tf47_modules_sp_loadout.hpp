@@ -111,7 +111,7 @@ class tf47_modules_sp_loadout_dialog
 		class tf47_modules_sp_loadout_apply_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1603;
-			action = "";
+			action = "if((lbCurSel 1500) > -1) then {if(ctrlEnabled 1605) then {[vehicle player, call compile lbData [1500,	(lbCurSel 1500)]] spawn	tf47_modules_servicepoint_fnc_applyVanillaLoadout;} else {[vehicle player, call compile lbData [1500, (lbCurSel 1500)]] spawn tf47_modules_servicepoint_fnc_applyAceLoadout;};};";
 
 			text = "Anwenden"; //--- ToDo: Localize;
 			x = 0.578478 * safezoneW + safezoneX;
@@ -142,7 +142,7 @@ class tf47_modules_sp_loadout_dialog
 		class tf47_modules_sp_loadout_vanilla_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1604;
-			action = "ctrlEnable [1604, false]; ctrlEnable [1605, true];";
+			action = "ctrlEnable [1604, false]; ctrlEnable [1605, true]; [] call tf47_modules_servicepoint_fnc_initVanillaLoadouts;";
 			text = "Vanilla Inventory"; //--- ToDo: Localize;
 			x = 0.419688 * safezoneW + safezoneX;
 			y = 0.368 * safezoneH + safezoneY;
@@ -152,7 +152,7 @@ class tf47_modules_sp_loadout_dialog
 		class tf47_modules_sp_loadout_ace_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1605;
-			action = "ctrlEnable [1604, true]; ctrlEnable [1605, false];";
+			action = "ctrlEnable [1604, true]; ctrlEnable [1605, false]; [] call tf47_modules_servicepoint_fnc_initAceLoadouts;";
 			text = "ACE Inventory"; //--- ToDo: Localize;
 			x = 0.5 * safezoneW + safezoneX;
 			y = 0.368 * safezoneH + safezoneY;
