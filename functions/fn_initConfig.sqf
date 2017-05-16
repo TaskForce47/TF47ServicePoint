@@ -26,3 +26,5 @@ publicVariable "tf47_modules_sp_loadouts_config";
 
 tf47_modules_sp_loadouts_aceConfig deleteAT (count
     tf47_modules_sp_loadouts_aceConfig - 1);
+
+publicVariable "tf47_modules_sp_loadouts_aceConfig";
