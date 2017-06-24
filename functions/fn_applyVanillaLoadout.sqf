@@ -1,18 +1,30 @@
+/**
+ *  @author Willard
+ *  @description
+ *  Applys a vanilla loadout
+ *  @params 
+ *      param 0: The vehicle <object> (required)
+ *      param 1: The loadout <ARRAY> (required)
+ *  @return nothing
+ */
 _result = _this params [
     ["_vehicle", objNull, [objNull]],
     ["_loadout", [], [[]]]
 ];
 
+// check for null vehicle
 if(isNull _vehicle) exitWith {
     ["applyVanillaLoadout called without a valid vehicle", "Error", true] spawn
         BIS_fnc_guiMessage;
 };
 
+// check for empty array
 if((count _loadout) == 0) exitWith {
     ["applyVanillaLoadout called without a valid loadout", "Error", true] spawn
         BIS_fnc_guiMessage;
 };
 
+// if no module, clear inventory
 if(_loadout select 1) then {
     clearWeaponCargoGlobal _vehicle;
     clearMagazineCargoGlobal _vehicle;
@@ -20,6 +32,7 @@ if(_loadout select 1) then {
     clearBackpackCargoGlobal _vehicle;
 };
 
+// determine remaing load
 _maxLoad = getNumber (configfile >> "CfgVehicles" >> typeOf _vehicle >>
     "maximumLoad");
 
@@ -28,6 +41,7 @@ _freeLoad = [_vehicle] call
 
 _remainingLoad = _maxLoad - _freeLoad;
 
+// check if loadout can be applied
 for "_i" from 2 to ((count _loadout) - 1) do {
     hint str ((_loadout select _i) select 1);
     _remainingLoad = _remainingLoad - (((_loadout select _i) select 1) *
@@ -39,6 +53,7 @@ if(_remainingLoad <= 0) exitWith {
     hint "Nicht genügend freier Platz vorhanden!";
 };
 
+// add items until full or done
 for "_i" from 2 to ((count _loadout) - 1) do {
     if(((_loadout select _i) select 2) == "CfgVehicles") then {
         _vehicle addBackpackCargoGlobal [(_loadout select _i) select 0,

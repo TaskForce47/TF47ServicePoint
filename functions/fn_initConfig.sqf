@@ -1,7 +1,14 @@
+/**
+ *  @author Willard
+ *  @description
+ *  Compiles and executes the config and cleans it up
+ *  @params none
+ *  @return nothing
+ */
+// call and execute config
 call compileFinal preprocessFileLineNumbers "TF47ServicePointConfig.sqf";
 
-// forEach loadout
-
+// clean up of the loadout config
 // O(n^2) ist bad but thats why we do it only at the start
 {
     // first and second is name and module, last is dummy array
@@ -19,7 +26,7 @@ tf47_modules_sp_loadouts_config deleteAt (count tf47_modules_sp_loadouts_config
 
 publicVariable "tf47_modules_sp_loadouts_config";
 
-
+// clean up of the ace loadout config
 {
     _x deleteAt (count _x - 1);
 } forEach tf47_modules_sp_loadouts_aceConfig;

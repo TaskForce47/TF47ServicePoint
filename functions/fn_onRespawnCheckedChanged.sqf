@@ -1,14 +1,26 @@
+/**
+ *  @author Willard
+ *  @description
+ *  Handles the value change of the respawn checkbox
+ *  @params 
+ *      param 0: The state <NUMBER> (required)
+ *  @return nothing
+ */
 _result = _this params [
     ["_state", 0, [0]]
 ];
 
+// Check for invalid change
 if(_state != 0 && _state != 1) exitWith {
     ["onRespawnCheckedChanged callled with invalid number", "Error", true] spawn
         BIS_fnc_guiMessage;
 };
 
+// get the control
 _control = uiNamespace getVariable ['tf47_modules_sp_main_dialog_var',nil];
 
+// disable everything else otherwise enable it and check if ace cargo is 
+// available
 if(_state == 1) then {
     ctrlEnable [2800, false];
     ctrlEnable [2801, false];

@@ -1,11 +1,9 @@
-_result = _this params [
-    ["_vehicle", objNull, [objNull]]
-];
-
-if(isNull _vehicle) exitWith {
-    ["applyService called without a valid vehicle", "Error", true] spawn
-        BIS_fnc_guiMessage;
-};
-
+/**
+ *  @author Willard
+ *  @description
+ *  Inits the loadout dialog
+ *  @params none
+ *  @return nothing
+ */
 ctrlEnable [1604, false];
 [] call tf47_modules_servicepoint_fnc_initVanillaLoadouts;

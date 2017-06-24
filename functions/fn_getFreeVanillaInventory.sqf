@@ -1,3 +1,12 @@
+/**
+ *  @author Willard
+ *  @description
+ *  Gets the free inventory space
+ *  @params 
+ *      param 0: The vehicle <object> (required)
+ *  @return Free inventory space
+ */
+
 private["_result", "_vehicle", "_weaponItemsCargo", "_magazineCargo",
     "_itemCargo", "_backpackCargo", "_weaponMass", "_magazineMass",
     "_itemMass", "_backpackContentMass", "_totalMass"];
@@ -6,16 +15,19 @@ _result = _this params [
     ["_vehicle", objNull, [objNull]]
 ];
 
+// check for null vehicle
 if(isNull _vehicle) exitWith {
-    // TODO
-    hint "no vehicle";
+    ["getFreeVanillaInventory called without a valid vehicle", "Error", true] spawn
+        BIS_fnc_guiMessage;
 };
 
+// get the cargo
 _weaponItemsCargo = weaponsItemsCargo _vehicle;
 _magazineCargo = magazineCargo _vehicle;
 _itemCargo = itemCargo _vehicle;
 _backpackCargo = backpackCargo _vehicle;
 
+// sum weapons
 _weaponMass = 0;
 {
     _weaponMass = _weaponMass +
@@ -31,12 +43,14 @@ _weaponMass = 0;
     if((_x select 6) != "") then {_magazineCargo pushBack (_x select 6); };
 } forEach _weaponItemsCargo;
 
+// sum magazines
 _magazineMass = 0;
 {
     _magazineMass = _magazineMass +
         getNumber (configFile >> "CfgMagazines" >> _x >> "mass");
 } forEach _magazineCargo;
 
+// sum items
 _itemMass = 0;
 {
     _itemMass = _itemMass +
@@ -45,6 +59,7 @@ _itemMass = 0;
         getNumber (configFile >> "CfgGlasses" >> _x >> "mass");
 } forEach _itemCargo;
 
+// sum backpacks recursive
 _backpackContentMass = 0;
 {
     _backpackContentMass = _backpackContentMass +
@@ -54,6 +69,7 @@ _backpackContentMass = 0;
 
 } forEach (everyContainer _vehicle);
 
+// sum everything
 _totalMass = _weaponMass + _magazineMass + _itemMass +
     _backpackContentMass;
 
