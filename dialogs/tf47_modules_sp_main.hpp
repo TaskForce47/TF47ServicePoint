@@ -228,7 +228,7 @@ class tf47_modules_sp_main_dialog
         class tf47_modules_sp_main_respawn_text: tf47_modules_sp_base_rsctext
         {
         	idc = 1022;
-        	text = "Respawn"; //--- ToDo: Localize;
+        	text = "Despawn"; //--- ToDo: Localize;
         	x = 0.54125 * safezoneW + safezoneX;
         	y = 0.423 * safezoneH + safezoneY;
         	w = 0.04125 * safezoneW;
@@ -250,22 +250,10 @@ class tf47_modules_sp_main_dialog
         	h = 0.022 * safezoneH;
         	colorBackground[] = {-1,-1,-1,0.8};
         };
-        class tf47_modules_sp_main_back_button: tf47_modules_sp_base_rscbutton_main
-        {
-        	idc = 1601;
-        	action = "closeDialog 0;";//" createDialog 'tf47_umenu_main_dialog';";
-
-        	text = "Zurück"; //--- ToDo: Localize;
-        	x = 0.424563 * safezoneW + safezoneX;
-        	y = 0.645 * safezoneH + safezoneY;
-        	w = 0.04125 * safezoneW;
-        	h = 0.022 * safezoneH;
-        	colorBackground[] = {-1,-1,-1,0.8};
-        };
         class tf47_modules_sp_main_loadout_button: tf47_modules_sp_base_rscbutton_main
         {
         	idc = 1602;
-        	action = "";
+        	action = "createDialog 'tf47_modules_sp_loadout_dialog';";
 
         	text = "Loadouts"; //--- ToDo: Localize;
         	x = 0.530937 * safezoneW + safezoneX;

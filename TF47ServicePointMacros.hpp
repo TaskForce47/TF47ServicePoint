@@ -11,4 +11,5 @@
 
 #define SERVICEPOINT_ACE_LOADOUT_CONFIG_BEGIN tf47_modules_sp_loadouts_aceConfig = [
 #define SERVICEPOINT_ACE_LOADOUT_CONFIG_END []]; publicVariable\
-    "tf47_modules_sp_loadouts_aceConfig";
+    "tf47_modules_sp_loadouts_aceConfig";\
+    publicVariable "tf47_modules_sp_markers";
