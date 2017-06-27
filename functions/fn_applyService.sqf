@@ -47,7 +47,7 @@ ctrlSetText [1024, "In Service"];
 if(_respawn) exitWith {
     closeDialog 0;
     ["tf47_modules_sp_respawn",
-        ["Dieses Fahrzeug wird in 10 Sekunden respawnen"]] call
+        ["Dieses Fahrzeug wird in 10 Sekunden despawnen"]] call
         BIS_fnc_showNotification;
     _vehicle setFuel 0;
     {
@@ -56,6 +56,8 @@ if(_respawn) exitWith {
 
     waitUntil {count (crew _vehicle) == 0};
     _vehicle lock true;
+
+    _vehicle setVariable ["tf47_core_ticketsystem_cost", 0, true];
 
     sleep 10;
 
