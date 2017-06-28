@@ -57,7 +57,7 @@ if(_respawn) exitWith {
     waitUntil {count (crew _vehicle) == 0};
     _vehicle lock true;
 
-    _vehicle setVariable ["tf47_core_ticketsystem_cost", 0, true];
+    _vehicle setVariable ["tf47_core_ticketsystem_despawn", true, true];
 
     sleep 10;
 
