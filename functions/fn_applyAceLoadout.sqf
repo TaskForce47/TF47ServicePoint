@@ -25,7 +25,7 @@ if((count _loadout) == 0) exitWith {
 };
 
 // clear the ace cargo
-if(_loadout select 1) then {
+if(!(_loadout select 1)) then {
     _vehicle setVariable ["ace_cargo_loaded", [], true];
     _vehicle setVariable ["ace_cargo_space", getNumber (configFile >>
         "CfgVehicles" >> typeOf _vehicle >> "ace_cargo_space"), true];

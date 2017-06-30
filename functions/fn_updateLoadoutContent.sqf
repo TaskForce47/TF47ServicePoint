@@ -22,9 +22,9 @@ lbClear 1501;
 
 // determine module
 if(_data select 1) then {
-    ctrlSetText [1003, "Ja"];
-} else {
     ctrlSetText [1003, "Nein"];
+} else {
+    ctrlSetText [1003, "Ja"];
 };
 
 // determine the loadout type (ace/vanilla)

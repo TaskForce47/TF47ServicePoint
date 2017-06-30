@@ -25,7 +25,7 @@ if((count _loadout) == 0) exitWith {
 };
 
 // if no module, clear inventory
-if(_loadout select 1) then {
+if(!(_loadout select 1)) then {
     clearWeaponCargoGlobal _vehicle;
     clearMagazineCargoGlobal _vehicle;
     clearItemCargoGlobal _vehicle;
