@@ -43,7 +43,6 @@ _remainingLoad = _maxLoad - _freeLoad;
 
 // check if loadout can be applied
 for "_i" from 2 to ((count _loadout) - 1) do {
-    hint str ((_loadout select _i) select 1);
     _remainingLoad = _remainingLoad - (((_loadout select _i) select 1) *
         ([((_loadout select _i) select 0), ((_loadout select _i) select 2)]
             call tf47_modules_servicepoint_fnc_getMass));

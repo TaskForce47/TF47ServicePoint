@@ -16,16 +16,11 @@ if(isNull _vehicle) exitWith {
         BIS_fnc_guiMessage;
 };
 
-// needs to be executed where the vehicle is local
-[_vehicle, {
-    _veh = _this;
-    _allMagazines = magazinesAllTurrets _veh;
-    hint str _allMagazines;
-    // remove every magazine, then add every magazine again
-    {
-        _veh removeMagazinesTurret [_x select 0, _x select 1];
-    } forEach _allMagazines;
-    {
-        _veh addMagazineTurret [_x select 0, _x select 1];
-    } forEach _allMagazines;
-}] remoteExecCall ["bis_fnc_call", owner _vehicle]; 
+_allMagazines = magazinesAllTurrets _vehicle;
+// remove every magazine, then add every magazine again
+{
+    _vehicle removeMagazinesTurret [_x select 0, _x select 1];
+} forEach _allMagazines;
+{
+    _vehicle addMagazineTurret [_x select 0, _x select 1];
+} forEach _allMagazines;

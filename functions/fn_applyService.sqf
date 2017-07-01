@@ -41,6 +41,8 @@ if(!_anyService || (_vehicle getVariable ["tf47_modules_sp_inService", false]))
 
 // in server
 _vehicle setVariable ["tf47_modules_sp_inService", true, true];
+_initialFuel = fuel _vehicle;
+_vehicle setFuel 0;
 ctrlSetText [1024, "In Service"];
 
 // respawn
@@ -91,21 +93,6 @@ if(_repair) then {
         tf47_modules_servicepoint_fnc_getDamage) * 100), "%"]];
 };
 
-// refuel
-if(_refuel) then {
-    _fuel = ((fuel _vehicle) - 1)* -1;
-    _time =  _tickTime * _fuel;
-    for "_i" from 0 to 100 do {
-        if((_i mod 25) == 0) then {
-            systemChat format["TF47 Service Point | Treibstoff: %1%2 fertig",
-                _i, "%"];
-        };
-        sleep _time;
-    };
-    [_vehicle, 1] remoteExecCall ["setFuel", owner _vehicle];
-    ctrlSetText [1008, format["%1%2", floor ((fuel _vehicle) * 100), "%"]];
-};
-
 // rearm
 if(_rearm) then {
     _ammo = [_vehicle] call tf47_modules_servicepoint_fnc_getAmmo;
@@ -120,9 +107,29 @@ if(_rearm) then {
     [_vehicle] call tf47_modules_servicepoint_fnc_rearmVehicle;
 
     _ammo = [_vehicle] call tf47_modules_servicepoint_fnc_getAmmo;
-    _ammo = format["%1%2", floor (_ammo * 100), "%"];
+    if(_ammo == -1) then {
+        _ammo = "n/a";
+    } else {
+        _ammo = format["%1%2", floor (_ammo * 100), "%"];
+    };
     ctrlSetText [1010, _ammo];
 };
+
+// refuel
+if(_refuel) then {
+    _fuel = (_initialFuel - 1)* -1;
+    _time =  _tickTime * _fuel;
+    for "_i" from 0 to 100 do {
+        if((_i mod 25) == 0) then {
+            systemChat format["TF47 Service Point | Treibstoff: %1%2 fertig",
+                _i, "%"];
+        };
+        sleep _time;
+    };
+    _initialFuel = 1;
+    ctrlSetText [1008, format["%1%2", floor ((fuel _vehicle) * 100), "%"]];
+};
+_vehicle setFuel _initialFuel;
 
 // clear van inf
 if(_clearInv) then {
@@ -130,6 +137,7 @@ if(_clearInv) then {
     clearWeaponCargoGlobal _vehicle;
     clearItemCargoGlobal _vehicle;
     clearMagazineCargoGlobal _vehicle;
+    ctrlSetText [1011, format["100%1", "%"]];
     systemChat format["TF47 Service Point | Inventar geleert"];
 };
 
@@ -138,6 +146,7 @@ if(_clearAceInv) then {
     _vehicle setVariable ["ace_cargo_loaded", [], true];
     _vehicle setVariable ["ace_cargo_space", getNumber (configFile >>
         "CfgVehicles" >> typeOf _vehicle >> "ace_cargo_space"), true];
+    ctrlSetText [1016, format["100%1", "%"]];
     systemChat format["TF47 Service Point | ACE Inventar geleert"];
 };
 
