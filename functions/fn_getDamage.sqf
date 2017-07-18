@@ -44,6 +44,8 @@ if(_wheelCount > 0) then {
     _hitPointCount = _hitPointCount + 1;
 };
 
+if(_hitPointCount == 0) then { _hitPointCount = 1; };
+
 // calculate percent
 _hitPointDamage = _hitPointDamage  / _hitPointCount;
 
