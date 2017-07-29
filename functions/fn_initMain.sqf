@@ -5,8 +5,7 @@
  *  @params none
  *  @return nothing
  */
-_vehicle = vehicle player;
-
+_vehicle = player getVariable["tf47_modules_sp_vehicle", player];
 if(_vehicle == player) exitWith {
     ["You are not in a vehicle!", "Error", true] spawn
         BIS_fnc_guiMessage;
