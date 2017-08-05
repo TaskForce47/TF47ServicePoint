@@ -20,5 +20,9 @@ class tf47_modules_servicepoint
         class getConfigType {};
         class initAceLoadouts {};
         class applyAceLoadout {};
+        class initPylons {};
+        class updatePylonContent {};
+        class updatePylonMagazineContent {};
+        class applyPylons {};
     };
 };

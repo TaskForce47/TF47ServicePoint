@@ -24,6 +24,11 @@ if((count _loadout) == 0) exitWith {
         BIS_fnc_guiMessage;
 };
 
+if(_vehicle == player) exitWith {
+    ["You are not in a valid vehicle!", "Error", true] spawn
+        BIS_fnc_guiMessage;
+};
+
 // if no module, clear inventory
 if(!(_loadout select 1)) then {
     clearWeaponCargoGlobal _vehicle;

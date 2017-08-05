@@ -2,7 +2,7 @@ class tf47_modules_sp_loadout_dialog
 {
 	idd = -1;
 	movingEnable = 0;
-	onLoad = "uiNamespace setVariable ['tf47_modules_sp_loadout_dialog_var',_this select 0]; [vehicle player] spawn tf47_modules_servicepoint_fnc_initLoadout;";
+	onLoad = "uiNamespace setVariable ['tf47_modules_sp_loadout_dialog_var',_this select 0]; [(player getVariable['tf47_modules_sp_vehicle', player])] spawn tf47_modules_servicepoint_fnc_initLoadout;";
 	onUnLoad = "uiNamespace setVariable ['tf47_modules_sp_loadout_dialog_var',nil]";
     class ControlsBackground
     {
@@ -111,7 +111,7 @@ class tf47_modules_sp_loadout_dialog
 		class tf47_modules_sp_loadout_apply_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1603;
-			action = "if((lbCurSel 1500) > -1) then {if(ctrlEnabled 1605) then {[vehicle player, call compile lbData [1500,	(lbCurSel 1500)]] spawn	tf47_modules_servicepoint_fnc_applyVanillaLoadout;} else {[vehicle player, call compile lbData [1500, (lbCurSel 1500)]] spawn tf47_modules_servicepoint_fnc_applyAceLoadout;};};";
+			action = "if((lbCurSel 1500) > -1) then {if(ctrlEnabled 1605) then {[(player getVariable['tf47_modules_sp_vehicle', player]), call compile lbData [1500,	(lbCurSel 1500)]] spawn	tf47_modules_servicepoint_fnc_applyVanillaLoadout;} else {[(player getVariable['tf47_modules_sp_vehicle', player]), call compile lbData [1500, (lbCurSel 1500)]] spawn tf47_modules_servicepoint_fnc_applyAceLoadout;};};";
 
 			text = "Anwenden"; //--- ToDo: Localize;
 			x = 0.578478 * safezoneW + safezoneX;
@@ -122,7 +122,7 @@ class tf47_modules_sp_loadout_dialog
 		};
 		class tf47_modules_sp_loadout_loadouts_listbox: tf47_modules_sp_base_listbox
 		{
-			onLBSelChanged = "[_this select 1] call tf47_modules_servicepoint_fnc_updateLoadoutContent";
+			onLBSelChanged = "[_this select 1] call tf47_modules_servicepoint_fnc_updateLoadoutContent;";
 			idc = 1500;
 			x = 0.386562 * safezoneW + safezoneX;
 			y = 0.412 * safezoneH + safezoneY;

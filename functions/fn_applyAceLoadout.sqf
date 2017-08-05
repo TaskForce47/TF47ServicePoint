@@ -24,6 +24,11 @@ if((count _loadout) == 0) exitWith {
         BIS_fnc_guiMessage;
 };
 
+if(_vehicle == player) exitWith {
+    ["You are not in a valid vehicle!", "Error", true] spawn
+        BIS_fnc_guiMessage;
+};
+
 // clear the ace cargo
 if(!(_loadout select 1)) then {
     _vehicle setVariable ["ace_cargo_loaded", [], true];

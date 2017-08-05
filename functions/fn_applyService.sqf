@@ -52,12 +52,14 @@ if(_respawn) exitWith {
         ["Dieses Fahrzeug wird in 10 Sekunden despawnen"]] call
         BIS_fnc_showNotification;
     _vehicle setFuel 0;
-    {
-        _x action ["GetOut", _vehicle];
-    } forEach crew _vehicle;
+    if(!(_vehicle isKindOf "UAV")) then {
+        {
+            _x action ["GetOut", _vehicle];
+        } forEach crew _vehicle;
 
-    waitUntil {count (crew _vehicle) == 0};
-    _vehicle lock true;
+        waitUntil {count (crew _vehicle) == 0};
+        _vehicle lock true;
+    };
 
     _vehicle setVariable ["tf47_core_ticketsystem_despawn", true, true];
 

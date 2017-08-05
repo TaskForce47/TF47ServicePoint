@@ -265,7 +265,7 @@ class tf47_modules_sp_main_dialog
         class tf47_modules_sp_main_apply_button: tf47_modules_sp_base_rscbutton_main
         {
         	idc = 1603;
-        	action = "[vehicle player] spawn tf47_modules_servicepoint_fnc_applyService;";
+        	action = "[(player getVariable['tf47_modules_sp_vehicle', player])] spawn tf47_modules_servicepoint_fnc_applyService;";
 
         	text = "Anwenden"; //--- ToDo: Localize;
         	x = 0.5785 * safezoneW + safezoneX;
@@ -274,6 +274,17 @@ class tf47_modules_sp_main_dialog
         	h = 0.022 * safezoneH;
         	colorBackground[] = {-1,-1,-1,0.8};
         };
+		class tf47_modules_sp_main_pylon_button: tf47_modules_sp_base_rscbutton_main
+		{
+			idc = 1601;
+			action = "createDialog 'tf47_modules_sp_pylons_dialog'";
+			text = "Pylons";
+			x = 0.424512 * safezoneW + safezoneX;
+			y = 0.64498 * safezoneH + safezoneY;
+			w = 0.04125 * safezoneW;
+			h = 0.022 * safezoneH;
+			colorBackground[] = {-1,-1,-1,0.8};
+		};
         class tf47_modules_sp_main_repair_checkbox: tf47_modules_sp_base_checkbox
         {
         	idc = 2800;
