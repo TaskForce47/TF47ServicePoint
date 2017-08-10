@@ -68,4 +68,7 @@ ctrlSetText [1016, _aceCargo];
 
 if(count (_vehicle getCompatiblePylonMagazines 0) <= 0) then {
     ctrlEnable [1601, false];
+} else {
+    ctrlEnable [2802, false];
+    (_control displayCtrl 1019) ctrlSetTextColor [0.3,0.3,0.3,1];
 };

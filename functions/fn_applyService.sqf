@@ -56,8 +56,14 @@ if(_respawn) exitWith {
         {
             _x action ["GetOut", _vehicle];
         } forEach crew _vehicle;
+        
+        // delete ai and dead/dc people
+        {
+            deleteVehicle _x;
+        } forEach (crew _vehicle);
 
         waitUntil {count (crew _vehicle) == 0};
+
         _vehicle lock true;
     };
 
