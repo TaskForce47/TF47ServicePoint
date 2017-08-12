@@ -59,7 +59,7 @@ if(_respawn) exitWith {
         
         // delete ai and dead/dc people
         {
-            deleteVehicle _x;
+            _vehicle deleteVehicleCrew _x;
         } forEach (crew _vehicle);
 
         waitUntil {count (crew _vehicle) == 0};
@@ -68,14 +68,15 @@ if(_respawn) exitWith {
     };
 
     _vehicle setVariable ["tf47_core_ticketsystem_despawn", true, true];
-
     sleep 10;
 
-    //ToDO Custom Code
-
     _vehicle setPos [0,0,0];
-    _vehicle setDamage 1;
+    sleep 5;
 
+    _vehicle setDamage 1;
+    sleep 30;
+
+    deleteVehicle _vehicle;
 };
 
 _damage = 0;
