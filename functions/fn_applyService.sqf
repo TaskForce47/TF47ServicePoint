@@ -70,6 +70,11 @@ if(_respawn) exitWith {
         };
 
         _vehicle setVariable ["tf47_core_ticketsystem_despawn", true, true];
+        _handle = _vehicle getVariable ["tf47_core_ticketsystem_timeoutHandle", 
+            -1];
+    	if(_handle != -1) then {
+    		[_handle] call CBA_fnc_removePerFrameHandler;
+	    };
         sleep 10;
 
         _vehicle setPos [0,0,0];
