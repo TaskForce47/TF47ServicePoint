@@ -24,5 +24,7 @@ class tf47_modules_servicepoint
         class updatePylonContent {};
         class updatePylonMagazineContent {};
         class applyPylons {};
+        class initTankammo {};
+        class applyTankammo {};
     };
 };

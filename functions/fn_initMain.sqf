@@ -66,7 +66,8 @@ ctrlSetText [1011, format["%1%2", floor ((_usedLoad / _maxLoad) * -100 + 100),
     "%"]];
 ctrlSetText [1016, _aceCargo];
 
-if(count (_vehicle getCompatiblePylonMagazines 0) <= 0) then {
+if((count (_vehicle getCompatiblePylonMagazines 0) <= 0) && 
+    !(_vehicle isKindOf "rhsusf_m1a1tank_base")) then {
     ctrlEnable [1601, false];
 } else {
     ctrlEnable [2802, false];

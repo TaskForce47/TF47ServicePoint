@@ -277,11 +277,11 @@ class tf47_modules_sp_main_dialog
 		class tf47_modules_sp_main_pylon_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1601;
-			action = "createDialog 'tf47_modules_sp_pylons_dialog'";
-			text = "Pylons";
+			action = "if((player getVariable['tf47_modules_sp_vehicle', player]) isKindOf 'rhsusf_m1a1tank_base') then { createDialog 'tf47_modules_sp_tankammo_dialog'; } else { createDialog 'tf47_modules_sp_pylons_dialog' };";
+			text = "Bewaffnung";
 			x = 0.424512 * safezoneW + safezoneX;
 			y = 0.64498 * safezoneH + safezoneY;
-			w = 0.04125 * safezoneW;
+			w = 0.05 * safezoneW;
 			h = 0.022 * safezoneH;
 			colorBackground[] = {-1,-1,-1,0.8};
 		};
