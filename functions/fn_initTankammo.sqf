@@ -24,23 +24,17 @@ lbSetCurSel [2100, -1];
 lbSetCurSel [2101, -1];
 lbSetCurSel [2102, -1];
 
-_ammo = [];
-if(_vehicle isKindOf "rhsusf_m1a1tank_base") then {
-	_ammo = ["rhs_mag_M1069", "rhs_mag_M829A3", "rhs_mag_M829A2", 
-		"rhs_mag_M829A1", "rhs_mag_M829", "rhs_mag_M830", "rhs_mag_M830A1",
-		"rhs_mag_M1028"];
-} else {
-	if(_vehicle isKindOf "BWA3_Leopard_base") then {
-		_ammo = ["BWA3_1Rnd_KE_shells", "BWA3_1Rnd_HE_shells", 
-			"BWA3_1Rnd_MZ_shells", "BWA3_1Rnd_Canister_shells",
-			"BWA3_1Rnd_LAHAT"];
-	};
-};
+
+_ammo = (tf47_modules_sp_ammo_tankAmmo select 1) select 
+	((tf47_modules_sp_ammo_tankAmmo select 0) 
+		find ((tf47_modules_sp_ammo_tankAmmo select 0) 
+		select {_vehicle isKindOf _x} select 0));
 
 for "_i" from 0 to 2 do 
 {
 	_id = 2100 + _i;	
 	{
+		_rounds = getNumber (configFile >> "CfgMagazines" >> _x >> "count");
 		_index = lbAdd [_id, 
 			getText(configfile >> "CfgMagazines" >> _x >> "displayName")];
 		lbSetData [_id, _index, _x];

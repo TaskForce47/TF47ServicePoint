@@ -21,6 +21,15 @@ if(isNull _vehicle) exitWith {
         BIS_fnc_guiMessage;
 };
 
+_hasInventory = (getNumber (configFile >> "CfgVehicles" >> (typeOf _vehicle) >> 
+    "transportmaxbackpacks")) + 
+    (getNumber (configFile >> "CfgVehicles" >> 
+    (typeOf _vehicle) >> "transportmaxmagazines")) +
+    (getNumber (configFile >> "CfgVehicles" >> (typeOf _vehicle) >> 
+    "transportmaxweapons"));
+
+if(_hasInventory == 0) exitWith { 0 };
+
 // get the cargo
 _weaponItemsCargo = weaponsItemsCargo _vehicle;
 _magazineCargo = magazineCargo _vehicle;

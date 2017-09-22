@@ -25,23 +25,22 @@ _count = [parseNumber ctrlText 1400];
 _count pushBack (parseNumber ctrlText 1401);
 _count pushBack (parseNumber ctrlText 1402);
 
+_ammo = [lbData [2100, lbCurSel 2100]];
+_ammo pushBack (lbData [2101, lbCurSel 2101]);
+_ammo pushBack (lbData [2102, lbCurSel 2102]);
+
 _sum = 0;
 {
-	_sum = _sum + _x; 
+	_sum = _sum + _x;
 } forEach _count;
 
+_vehicleIndex = ((tf47_modules_sp_ammo_tankAmmo select 0)     
+	find ((tf47_modules_sp_ammo_tankAmmo select 0)     
+	select {_vehicle isKindOf _x} select 0));
+_maxAmmo = ((tf47_modules_sp_ammo_tankAmmo select 2) select _vehicleIndex);
 
-_maxAmmo = 0;
-if(_vehicle isKindOf "rhsusf_m1a1tank_base") then {
-	_maxAmmo = 32;
-} else {
-	if(_vehicle isKindOf "BWA3_Leopard_base") then {
-		_maxAmmo = 37;
-	};
-};
-
-
-if(_sum > _maxAmmo) exitWith {
+if(_sum > _maxAmmo) 
+	exitWith {
 	hint format["Es können nur maximal %1 Schuss mitgeführt werden", _maxAmmo];
 };
 
@@ -54,26 +53,23 @@ for "_i" from 0 to 100 do {
 	sleep _time;
 };
 
-_ammo = [lbData [2100, lbCurSel 2100]];
-_ammo pushBack (lbData [2101, lbCurSel 2101]);
-_ammo pushBack (lbData [2102, lbCurSel 2102]);
+_mainGunParentClass = ((tf47_modules_sp_ammo_tankAmmo select 3) 
+	select _vehicleIndex);
 
 {
-	if(_x iskindof ["rhs_mag_M1069", configFile >> "CfgMagazines"] || 
-		_x isKindOf ["30Rnd_120mm_HE_shells", configFile >> "CfgMagazines"]) 
-		then {
+	if(_x isKindOf [_mainGunParentClass, configFile >> "CfgMagazines"] || 
+		_x == _mainGunParentClass) then {
 		_vehicle removeMagazineTurret [_x, [0]];
 	};
 } foreach (_vehicle magazinesTurret [0]);
 
+// BW Mod is 'special'
 if(_vehicle isKindOf "BWA3_Leopard_base") then {
 	{
 		if(_x != "" && ((_count select _forEachIndex) >= 0)) then {
 			for "_i" from 1 to (_count select _forEachIndex) do {
 				_vehicle addMagazineTurret [_x, [0], 1];
 			};
-			
-			//_vehicle setMagazineTurretAmmo [_x , (_count select _forEachIndex), [0]];
 		};
 	} forEach _ammo;
 } else {

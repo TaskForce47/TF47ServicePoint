@@ -46,6 +46,7 @@ _maxLoad = getNumber (configfile >> "CfgVehicles" >> typeOf _vehicle >>
     "maximumLoad");
 if(_maxLoad == 0) then {
     _maxLoad = 1;
+    _usedLoad = 1;
 };
 // get the free ace cargo space and show it
 _aceCargo = [_vehicle] call tf47_modules_servicepoint_fnc_getAceCargo;
@@ -67,8 +68,9 @@ ctrlSetText [1011, format["%1%2", floor ((_usedLoad / _maxLoad) * -100 + 100),
 ctrlSetText [1016, _aceCargo];
 
 if((count (_vehicle getCompatiblePylonMagazines 0) <= 0) && 
-    !(_vehicle isKindOf "rhsusf_m1a1tank_base") && 
-    !(_vehicle isKindOf "BWA3_Leopard_base")) then {
+    (count ((tf47_modules_sp_ammo_tankAmmo select 0) 
+        select {_vehicle isKindOf _x}) < 1)
+    ) then {
     ctrlEnable [1601, false];
 } else {
     ctrlEnable [2802, false];

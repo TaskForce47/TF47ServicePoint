@@ -277,7 +277,7 @@ class tf47_modules_sp_main_dialog
 		class tf47_modules_sp_main_pylon_button: tf47_modules_sp_base_rscbutton_main
 		{
 			idc = 1601;
-			action = "if((player getVariable['tf47_modules_sp_vehicle', player]) isKindOf 'rhsusf_m1a1tank_base' || (player getVariable['tf47_modules_sp_vehicle', player]) isKindOf 'BWA3_Leopard_base') then { createDialog 'tf47_modules_sp_tankammo_dialog'; } else { createDialog 'tf47_modules_sp_pylons_dialog' };";
+			action = "if(count ((tf47_modules_sp_ammo_tankAmmo select 0) select {(player getVariable['tf47_modules_sp_vehicle', player]) isKindOf _x}) >= 1) then { createDialog 'tf47_modules_sp_tankammo_dialog'; } else { createDialog 'tf47_modules_sp_pylons_dialog' };";
 			text = "Bewaffnung";
 			x = 0.424512 * safezoneW + safezoneX;
 			y = 0.64498 * safezoneH + safezoneY;
