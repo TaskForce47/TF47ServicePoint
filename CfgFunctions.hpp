@@ -26,5 +26,6 @@ class tf47_modules_servicepoint
         class applyPylons {};
         class initTankammo {};
         class applyTankammo {};
+        class despawnVehicle {};
     };
 };

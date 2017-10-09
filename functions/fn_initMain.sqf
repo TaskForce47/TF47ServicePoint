@@ -72,7 +72,14 @@ if((count (_vehicle getCompatiblePylonMagazines 0) <= 0) &&
         select {_vehicle isKindOf _x}) < 1)
     ) then {
     ctrlEnable [1601, false];
-} else {
+    /*
+    if(count ((tf47_modules_sp_ammo_tankAmmo select 0) 
+        select {_vehicle isKindOf _x}) < 1) then {
+        ctrlEnable [2802, false];
+        (_control displayCtrl 1019) ctrlSetTextColor [0.3,0.3,0.3,1];
+    };
+    */
+}; /*else {
     ctrlEnable [2802, false];
     (_control displayCtrl 1019) ctrlSetTextColor [0.3,0.3,0.3,1];
-};
+};*/

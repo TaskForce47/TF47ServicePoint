@@ -27,6 +27,10 @@ _pylons = configProperties [configfile >> "CfgVehicles" >> typeOf _vehicle >>
 	"Components" >> "TransportPylonsComponent" >> "Pylons" , "true", true];
 
 {
-	_index = lbAdd [1500, configName (_pylons select _forEachIndex)];
-    lbSetData [1500, _index, str [_x, -1, _x select 0]];
+    _index = lbAdd [1500, configName (_pylons select _forEachIndex)];
+    if((count _x) > 0) then {
+        lbSetData [1500, _index, str [_x, -1, _x select 0]];
+    } else {
+        lbSetData [1500, _index, ""];
+    };
 } forEach (_vehicle getCompatiblePylonMagazines 0);

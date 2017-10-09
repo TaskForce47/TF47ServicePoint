@@ -20,7 +20,7 @@ if(_vehicle == player) exitWith {
     ["You are not in a valid vehicle!", "Error", true] spawn
         BIS_fnc_guiMessage;
 };
-_tickTime = 0.1;
+_tickTime = 0.01;
 _time = _tickTime * (lbSize 1500);
 for "_i" from 0 to 100 do {
 	if((_i mod 25) == 0) then {
@@ -35,7 +35,9 @@ _pylonPaths = (configProperties [configFile >> "CfgVehicles" >>
 
 for "_i" from 0 to ((lbSize 1500) - 1) do {
 	_data = lbData [1500, _i];
-	_data = call compile _data;
-	_vehicle setPylonLoadOut [_i + 1, (_data select 2), true, 
-		_pylonPaths select _i];
+	if(_data != "") then {
+		_data = call compile _data;
+		_vehicle setPylonLoadOut [_i + 1, (_data select 2), true, 
+			_pylonPaths select _i];
+	};
 };

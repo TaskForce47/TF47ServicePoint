@@ -51,46 +51,7 @@ if(_respawn) exitWith {
     ["tf47_modules_sp_respawn",
         ["Dieses Fahrzeug wird in 10 Sekunden despawnen"]] call
         BIS_fnc_showNotification;
-    [_vehicle, {
-        _vehicle = _this;
-        _vehicle setFuel 0;
-        if(!(_vehicle isKindOf "UAV")) then {
-            {
-                _x action ["GetOut", _vehicle];
-            } forEach crew _vehicle;
-            
-            // delete ai and dead/dc people
-            {
-                _vehicle deleteVehicleCrew _x;
-            } forEach (crew _vehicle);
-
-            waitUntil {count (crew _vehicle) == 0};
-
-            _vehicle lock true;
-        };
-
-        missionNamespace setVariable 
-            [format ["tf47_core_ticketsystem_despawn_%1", 
-            (_vehicle call BIS_fnc_netId)], true, true];
-        //_vehicle setVariable ["tf47_core_ticketsystem_despawn", true, true];
-        
-        _handle = missionNamespace getVariable [
-		    format["tf47_core_ticketsystem_timeoutHandle_%1", 
-		    _vehicle call BIS_fnc_netId], -1];
-        //_handle = _vehicle getVariable ["tf47_core_ticketsystem_timeoutHandle",           -1];
-    	if(_handle != -1) then {
-    		[_handle] call CBA_fnc_removePerFrameHandler;
-	    };
-        sleep 10;
-
-        _vehicle setPos [0,0,0];
-        sleep 5;
-
-        _vehicle setDamage 1;
-        sleep 30;
-
-        deleteVehicle _vehicle;
-    }] remoteExec ["bis_fnc_spawn", 2]; 
+    [_vehicle] remoteExec ["tf47_modules_servicepoint_fnc_despawnVehicle", 2]; 
 };
 
 _damage = 0;

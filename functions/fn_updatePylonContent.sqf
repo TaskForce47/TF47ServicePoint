@@ -14,6 +14,7 @@ if(_index <= -1) exitWith {};
 
 // get the loadout details
 _data = lbData [1500, _index];
+if(_data == "") exitWith {};
 _data = call compile _data;
 
 // clear the listbox
