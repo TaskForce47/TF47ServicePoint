@@ -21,8 +21,22 @@ _data = call compile _data;
 lbClear 1501;
 lbSetCurSel [1501, -1];
 {
-	_index = lbAdd [1501, getText (configFile >> "CfgMagazines" >> _x >> "displayName")];
-	lbSetData [1501, _index, _x];
+	_index = lbAdd [1501, getText 
+		(configFile >> "CfgMagazines" >> _x >> "displayName")];
+	lbSetData [1501, _index, str [_x, ""]];
 } forEach (_data select 0);
+
+_vehicle = (player getVariable['tf47_modules_sp_vehicle', player]);
+
+_turrets = ("true" configClasses 
+    (configfile >> "CfgVehicles" >> typeOf _vehicle >> "Turrets"));
+
+if((count _turrets) >= 1) then {
+	{
+		_index = lbAdd [1501, format["%1%2", getText 
+			(configFile >> "CfgMagazines" >> _x >> "displayName"), " (Gunner)"]];
+		lbSetData [1501, _index, str [_x, configName (_turrets select 0)]];
+	} forEach (_data select 0);
+};
 
 lbSetCurSel [1501, _data select 1];

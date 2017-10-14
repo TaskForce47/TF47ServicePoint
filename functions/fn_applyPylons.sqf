@@ -29,15 +29,22 @@ for "_i" from 0 to 100 do {
 	sleep _time;
 };
 
+/*
 _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> 
 	typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> 
 	"Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+	*/
 
 for "_i" from 0 to ((lbSize 1500) - 1) do {
 	_data = lbData [1500, _i];
 	if(_data != "") then {
 		_data = call compile _data;
-		_vehicle setPylonLoadOut [_i + 1, (_data select 2), true, 
-			_pylonPaths select _i];
+		_magData = call compile (_data select 2);
+		if((_magData select 1) == "") then {
+			_vehicle setPylonLoadOut [_i + 1, (_magData select 0), true, []];
+		} else {
+			_vehicle setPylonLoadOut [_i + 1, (_magData select 0), true, 
+				[_magData select 1]];
+		};
 	};
 };
