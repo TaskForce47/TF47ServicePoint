@@ -43,12 +43,6 @@ for "_i" from 2 to ((count _loadout) - 1) do {
             ace_cargo_fnc_canLoadItemIn) then {
             _loadedItem = [(_loadout select _i) select 0, _vehicle] call
                 ace_cargo_fnc_addCargoItem;
-            if(((_loadout select _i) select 0) == "Land_CanisterFuel_F" &&
-                !isNil "ace_refuel_fnc_makeJerryCan") then {
-                [_loadedItem] call ace_refuel_fnc_makeJerryCan;
-                [_loadedItem, true] call ace_dragging_fnc_setDraggable;
-                [_loadedItem, true] call ace_dragging_fnc_setCarryable;
-            };
         } else {
             hint "Nicht genügend freier Platz vorhanden!";
         };
