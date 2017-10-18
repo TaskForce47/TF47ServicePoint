@@ -127,9 +127,9 @@ if(_clearInv) then {
 
 // clear ace inf
 if(_clearAceInv) then {
-    _vehicle setVariable ["ace_cargo_loaded", [], true];
-    _vehicle setVariable ["ace_cargo_space", getNumber (configFile >>
-        "CfgVehicles" >> typeOf _vehicle >> "ace_cargo_space"), true];
+    {
+        [_x, _vehicle] call ace_cargo_fnc_removeCargoItem;
+    } forEach (_vehicle getVariable["ace_cargo_loaded", []]);
     ctrlSetText [1016, format["100%1", "%"]];
     systemChat format["TF47 Service Point | ACE Inventar geleert"];
 };
