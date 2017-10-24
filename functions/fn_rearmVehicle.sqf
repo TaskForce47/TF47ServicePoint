@@ -20,11 +20,11 @@ _allMagazines = magazinesAllTurrets _vehicle;
 // remove every magazine, then add every magazine again
 {
     //_vehicle removeMagazinesTurret [_x select 0, _x select 1];
-    [_vehicle, [_x select 0, _x select 1]] remoteExec 
+    [_vehicle, [_x select 0, _x select 1]] remoteExecCall 
         ["removeMagazinesTurret", (_vehicle turretOwner (_x select 1))];
 } forEach _allMagazines;
 {
     //_vehicle addMagazineTurret [_x select 0, _x select 1];
-    [_vehicle, [_x select 0, _x select 1]] remoteExec 
+    [_vehicle, [_x select 0, _x select 1]] remoteExecCall 
         ["addMagazineTurret", (_vehicle turretOwner (_x select 1))];
 } forEach _allMagazines;

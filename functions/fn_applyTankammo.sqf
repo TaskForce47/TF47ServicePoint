@@ -50,8 +50,10 @@ for "_i" from 0 to 100 do {
 	if((_i mod 25) == 0) then {
 		systemChat format["TF47 Service Point | Bewaffnung: %1%2 fertig", _i, "%"];
 	};
-	sleep _time;
+	//sleep _time;
 };
+
+[_vehicle] call tf47_modules_servicepoint_fnc_rearmVehicle;
 
 _mainGunParentClass = ((tf47_modules_sp_ammo_tankAmmo select 3) 
 	select _vehicleIndex);
@@ -68,15 +70,18 @@ if(_vehicle isKindOf "BWA3_Leopard_base") then {
 	{
 		if(_x != "" && ((_count select _forEachIndex) >= 0)) then {
 			for "_i" from 1 to (_count select _forEachIndex) do {
-				_vehicle addMagazineTurret [_x, [0], 1];
+				[_vehicle, [_x, [0], 1]] remoteExecCall 
+					["addMagazineTurret", (_vehicle turretOwner [0])];
 			};
 		};
 	} forEach _ammo;
 } else {
 	{
 		if(_x != "" && ((_count select _forEachIndex) >= 0)) then {
-			_vehicle addMagazineTurret [_x, [0]];
-			_vehicle setMagazineTurretAmmo [_x , (_count select _forEachIndex), [0]];
+			[_vehicle, [_x, [0]]] remoteExecCall ["addMagazineTurret", 
+				(_vehicle turretOwner [0])];
+			[_vehicle, [_x , (_count select _forEachIndex), [0]]] remoteExecCall
+				["setMagazineTurretAmmo", (_vehicle turretOwner [0])];
 		};
 	} forEach _ammo;
 };

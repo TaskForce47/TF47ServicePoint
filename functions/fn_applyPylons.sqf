@@ -26,7 +26,7 @@ for "_i" from 0 to 100 do {
 	if((_i mod 25) == 0) then {
 		systemChat format["TF47 Service Point | Pylons: %1%2 fertig", _i, "%"];
 	};
-	sleep _time;
+	//sleep _time;
 };
 
 /*
@@ -41,10 +41,20 @@ for "_i" from 0 to ((lbSize 1500) - 1) do {
 		_data = call compile _data;
 		_magData = call compile (_data select 2);
 		if((_magData select 1) == "") then {
-			_vehicle setPylonLoadOut [_i + 1, (_magData select 0), true, []];
+			//_vehicle setPylonLoadOut [_i + 1, (_magData select 0), true, []];
+			[_vehicle, [_i + 1, (_magData select 0), true, 
+					[]]] remoteExecCall 
+        			["setPylonLoadOut", 
+					(_vehicle turretOwner [])];
 		} else {
+			/*
 			_vehicle setPylonLoadOut [_i + 1, (_magData select 0), true, 
 				[_magData select 1]];
+			*/
+				[_vehicle, [_i + 1, (_magData select 0), true, 
+					[_magData select 1]]] remoteExecCall 
+        			["setPylonLoadOut", 
+					(_vehicle turretOwner [0])];
 		};
 	};
 };
